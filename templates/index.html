@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <style>
+        .container {
+            width: 310px;
+            height: 310px;
+            margin-top: 1.0em;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .container_img {
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+        }
+    </style>
+    <title>QR Code Generator</title>
+  </head>
+  <body>
+    <div style="text-align: center;">
+    <h1 style="font-size:2em; text-align: center; font-family: Courier;">QR Code Generator</h1>
+        <form action="{{ url_for('generate') }}" method="post" enctype="multipart/form-data">
+          <label for="text" style="font-family: Courier;">Text:</label>
+          <input type="text" id="text" name="text">
+          <br>
+          <label for="json_file" style="font-family: Courier;">JSON File:</label>
+          <input type="file" id="json_file" name="json_file" style="margin-top: 1.2em; font-family: Courier;">
+          <br>
+          <input type="submit" value="Generate QR Code" style="margin-top: 1.2em; font-family: Courier;">
+        </form>
+    </div>
+    <div>
+        <p id="message" ></p>
+    </div>
+     <div class="container">
+         {% if image_data %}
+            <img id="image" src="data:image/png;base64,{{ image_data }}" class="container_img">
+         {% endif %}
+    </div>
+    <div style="text-align: center;">
+        <h1 style="font-size:2em; text-align: center; font-family: Courier;">QR Code Reader</h1>
+        <form action="{{ url_for('decode') }}" method="post" enctype="multipart/form-data">
+          <label for="qr_file" style="font-family: Courier;">QR Code Image:</label>
+          <input type="file" id="qr_file" name="qr_file" style="font-family: Courier;">
+          <br>
+          <input type="submit" value="Decode QR Code" style="margin-top: 1.2em; font-family: Courier;">
+        </form>
+        {% if decoded_data %}
+            <p>{{ decoded_data }}</p>
+        {% endif %}
+    </div>
+  </body>
+</html>

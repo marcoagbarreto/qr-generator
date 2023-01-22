@@ -1,0 +1,14 @@
+certifi==2022.12.7
+click==8.0.4
+colorama==0.4.6
+Flask==2.2.2
+gunicorn==20.1.0
+itsdangerous==2.0.1
+Jinja2==3.1.2
+MarkupSafe==2.1.1
+numpy==1.24.1
+opencv-python==4.7.0.68
+Pillow==9.4.0
+qrcode==7.3.1
+Werkzeug==2.2.2
+wincertstore==0.2
